@@ -18,7 +18,7 @@ dev_requirements = [
 
 setup(
     name="PoePricePredictor",
-    version="0.0.1",
+    version="0.1.0",
     author="Kyle Harrison",
     author_email="kyleharrison94@hotmail.com",
     packages=find_packages(),
