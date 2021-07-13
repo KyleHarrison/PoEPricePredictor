@@ -7,9 +7,9 @@ jupyter:
       format_version: '1.3'
       jupytext_version: 1.10.2
   kernelspec:
-    display_name: funnel-vision
+    display_name: poepp
     language: python
-    name: funnel-vision
+    name: poepp
 ---
 
 ```python
