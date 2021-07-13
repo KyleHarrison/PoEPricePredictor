@@ -1,0 +1,8 @@
+# Distribution / packaging
+*.egg
+*.egg-info/
+build/
+dist/
+
+# OS X DS_Store
+.DS_Store
