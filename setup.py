@@ -9,7 +9,7 @@ requirements = [
 ]
 
 dev_requirements = [
-    "black==19.10b0",
+    "black",
     "bumpversion",
     "flake8",
     "isort",
