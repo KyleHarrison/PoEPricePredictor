@@ -1,4 +1,6 @@
-from setuptools import find_packages, setup
+import os
+
+from setuptools import Command, find_packages, setup
 
 requirements = [
     "numpy",
@@ -16,6 +18,24 @@ dev_requirements = [
     "pytest",
 ]
 
+
+class CleanCommand(Command):
+    """
+    Custom clean command to tidy up the project root.
+    https://github.com/trigger/trigger/blob/develop/setup.py#L26
+    """
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        assert os.getcwd() == self.cwd, "Must be in package root: %s" % self.cwd
+        os.system("rm -rf ./build ./dist ./*.pyc ./*.tgz ./*.egg-info")
+
+
 setup(
     name="PoePricePredictor",
     version="0.1.0",
@@ -27,4 +47,7 @@ setup(
     long_description=open("README.md").read(),
     install_requires=requirements,
     extras_require={"dev": dev_requirements},
+    cmdclass={
+        "clean": CleanCommand,
+    },
 )
