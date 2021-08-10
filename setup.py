@@ -2,13 +2,7 @@ import os
 
 from setuptools import Command, find_packages, setup
 
-requirements = [
-    "numpy",
-    "pandas",
-    "plotly",
-    "jupyter",
-    "jupytext",
-]
+requirements = ["numpy", "pandas", "plotly", "jupyter", "jupytext", "tqdm"]
 
 dev_requirements = [
     "black",
