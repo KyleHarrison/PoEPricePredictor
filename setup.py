@@ -2,7 +2,15 @@ import os
 
 from setuptools import Command, find_packages, setup
 
-requirements = ["numpy", "pandas", "plotly", "jupyter", "jupytext", "tqdm", "matplotlib"]
+requirements = [
+    "numpy",
+    "pandas",
+    "plotly",
+    "jupyter",
+    "jupytext",
+    "tqdm",
+    "matplotlib",
+]
 
 dev_requirements = [
     "black",
@@ -10,6 +18,10 @@ dev_requirements = [
     "flake8",
     "isort",
     "pytest",
+    "coverage",
+    "pytest-cov",
+    "radon[flake8]",
+    "tox",
 ]
 
 
@@ -37,7 +49,9 @@ setup(
     author_email="kyleharrison94@hotmail.com",
     packages=find_packages(),
     license="LICENSE.md",
-    description="A Python package for predicting currency prices in the game Path of Exile",
+    description=(
+        "A Python package for predicting currency prices in the game Path of Exile"
+    ),
     long_description=open("README.md").read(),
     install_requires=requirements,
     extras_require={"dev": dev_requirements},
