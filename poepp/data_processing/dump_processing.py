@@ -58,13 +58,19 @@ def get_data(file_paths):
 
 
 def plot_currency(df):
+    """Plot currency by date.
+
+    :param pd.DataFrame: df
+        The DataFrame of each currency and date.
+    """
+
     fig = go.Figure()
-    first_currency = df["currency"].unique()[0]
+    currency_list = sorted(list(df["currency"].unique()))
     fig.add_traces(
         go.Scatter(
-            x=df[df["currency"] == first_currency]["value"].index.values,
-            y=df[df["currency"] == first_currency]["value"].values,
-            name=first_currency,
+            x=df[df["currency"] == currency_list[0]]["value"].index.values,
+            y=df[df["currency"] == currency_list[0]]["value"].values,
+            name=currency_list[0],
         )
     )
     updatemenus = [
@@ -78,7 +84,7 @@ def plot_currency(df):
                         {"x": [df[df["currency"] == currency]["value"].index.values]},
                     ],
                 }
-                for currency in df["currency"].unique()
+                for currency in currency_list
             ],
             "direction": "down",
             "showactive": True,
