@@ -1,8 +1,20 @@
 # Distribution / packaging
 *.egg
 *.egg-info/
+*.pyc
+*-checkpoint.md
 build/
 dist/
 
 # OS X DS_Store
 .DS_Store
+
+# Data
+*.zip
+*.csv
+*.json
+
+# Tox
+*.lock
+*.xml
+*.log
