@@ -32,7 +32,7 @@ class CleanCommand(Command):
 
 setup(
     name="poepp",
-    version="0.1.0",
+    version="0.1.1",
     author="Kyle Harrison",
     author_email="kyleharrison94@hotmail.com",
     packages=find_packages(),
