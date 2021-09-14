@@ -49,7 +49,9 @@ setup(
     author_email="kyleharrison94@hotmail.com",
     packages=find_packages(),
     license="LICENSE.md",
-    description="A Python package for predicting currency prices in the game Path of Exile",
+    description=(
+        "A Python package for predicting currency prices in the game Path of Exile"
+    ),
     long_description=open("README.md").read(),
     install_requires=requirements,
     extras_require={"dev": dev_requirements},
