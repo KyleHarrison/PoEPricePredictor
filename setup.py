@@ -2,7 +2,15 @@ import os
 
 from setuptools import Command, find_packages, setup
 
-requirements = ["numpy", "pandas", "plotly", "jupyter", "jupytext", "tqdm", "matplotlib"]
+requirements = [
+    "numpy",
+    "pandas",
+    "plotly",
+    "jupyter",
+    "jupytext",
+    "tqdm",
+    "matplotlib",
+]
 
 dev_requirements = [
     "black",
@@ -10,6 +18,10 @@ dev_requirements = [
     "flake8",
     "isort",
     "pytest",
+    "coverage",
+    "pytest-cov",
+    "radon[flake8]",
+    "tox",
 ]
 
 
