@@ -2,7 +2,7 @@ import os
 
 from setuptools import Command, find_packages, setup
 
-requirements = ["numpy", "pandas", "plotly", "jupyter", "jupytext", "tqdm"]
+requirements = ["numpy", "pandas", "plotly", "jupyter", "jupytext", "tqdm", "matplotlib"]
 
 dev_requirements = [
     "black",
@@ -31,7 +31,7 @@ class CleanCommand(Command):
 
 
 setup(
-    name="PoePricePredictor",
+    name="poepp",
     version="0.1.0",
     author="Kyle Harrison",
     author_email="kyleharrison94@hotmail.com",

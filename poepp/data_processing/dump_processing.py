@@ -33,16 +33,64 @@ def extract_df(file_path):
         file_path,
         sep=";",
         parse_dates=["Date"],
-        dtype={
-            "League": str,
-            "Get": str,
-            "Pay": str,
-            "Value": float,
-            "Confidence": str,
-        },
     )
     df.columns = df.columns.str.lower()
     df = df.rename(columns={"get": "currency"})
     df = df[df["pay"] == "Chaos Orb"]
     df = df[["league", "date", "currency", "value"]]
     return df
+
+
+def get_data(file_paths):
+    """Extracts and joins all the leagues from the given list of csvs.
+
+    :param list: file_paths
+        The list of the file paths to data csvs.
+
+    :returns pd.DataFrame:
+        The dataframe for all the given files.
+    """
+    df_list = [extract_df(file) for file in file_paths]
+    df = pd.concat(df_list)
+    df = df.set_index("date")
+    df = df.sort_index()
+    return df
+
+
+def plot_currency(df):
+    fig = go.Figure()
+    first_currency = df["currency"].unique()[0]
+    fig.add_traces(
+        go.Scatter(
+            x=df[df["currency"] == first_currency]["value"].index.values,
+            y=df[df["currency"] == first_currency]["value"].values,
+            name=first_currency,
+        )
+    )
+    updatemenus = [
+        {
+            "buttons": [
+                {
+                    "method": "restyle",
+                    "label": currency,
+                    "args": [
+                        {"y": [df[df["currency"] == currency]["value"].values]},
+                        {"x": [df[df["currency"] == currency]["value"].index.values]},
+                    ],
+                }
+                for currency in df["currency"].unique()
+            ],
+            "direction": "down",
+            "showactive": True,
+            "xanchor": "center",
+            "yanchor": "bottom",
+            "x": 0.5,
+            "y": 1.1,
+        },
+    ]
+    fig.update_layout(
+        updatemenus=updatemenus,
+        xaxis_title="Date",
+        yaxis_title="Chaos Orb",
+    )
+    return fig
