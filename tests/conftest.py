@@ -1,3 +1,9 @@
-""" Configuration for pytest. """
+import pathlib
 
-from .fixtures import data_fixtures
+import pytest
+
+
+@pytest.fixture()
+def data_fixtures():
+    """Load a data fixture."""
+    return pathlib.Path(__file__).parent / "test_data"
