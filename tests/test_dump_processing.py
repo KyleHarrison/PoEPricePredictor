@@ -4,28 +4,28 @@ from poepp.data_processing import dump_processing
 
 
 class TestDumpProcessing:
-    def test_get_csv(self):
+    def test_get_csv(self, data_fixtures):
         file_path = dump_processing.get_currency_file_paths(
-            file_dirs="tests/data/*.csv"
+            file_dirs=str(data_fixtures / "*.csv")
         )
-        assert sorted(file_path) == sorted(
+        assert sorted([file.split("/")[-1] for file in file_path]) == sorted(
             [
-                "tests/data/test_league_currency_1.csv",
-                "tests/data/test_league_currency_2.csv",
+                "test_league_currency_1.csv",
+                "test_league_currency_2.csv",
             ]
         )
 
-    def test_read_csv(self):
+    def test_read_csv(self, data_fixtures):
         file_path = dump_processing.get_currency_file_paths(
-            file_dirs="tests/data/*.csv"
+            file_dirs=str(data_fixtures / "*.csv")
         )
         df = dump_processing.extract_df(file_path[0])
         assert all(df.columns == ["league", "date", "currency", "value"])
         assert df.shape == (5, 4)
 
-    def test_get_all_data(self):
+    def test_get_all_data(self, data_fixtures):
         file_path = dump_processing.get_currency_file_paths(
-            file_dirs="tests/data/*.csv"
+            file_dirs=str(data_fixtures / "*.csv")
         )
         df = dump_processing.get_data(file_path)
         assert df.shape == (10, 3)
